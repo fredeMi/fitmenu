@@ -1,3 +1,5 @@
+CI project: to all establishments which need a menu without paper. Each user can create many establishments to have a menu online for his clients. Such a good thing nowadays!
+
 ###################
 What is CodeIgniter
 ###################
