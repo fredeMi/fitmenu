@@ -21,7 +21,7 @@
                 <td><?= $cat->name ?></td>
                 <td><?= $cat->description ?></td>
                 <td><?= $cat->rank ?></td>
-                <td><img src="<?= $cat->image ?>" alt="<?= $cat->name ?>"></td>
+                <td><img src="<?= $cat->image ?>" alt="<?= $cat->name ?>" width="50"></td>
                 <td><a href="/back/category/<?= $cat->id ?>" type="button" class="btn btn-info">Modifier</a></td>
             </tr>
             <?}?>

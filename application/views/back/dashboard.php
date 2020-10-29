@@ -33,5 +33,5 @@
     </table>
 </div>
 <div class="row">
-<button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/createEtab/">Créer un nouvel établissement</a></button>
+<button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/establishment/">Créer un nouvel établissement</a></button>
 </div>

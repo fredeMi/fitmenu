@@ -29,7 +29,6 @@ class Login extends CI_Controller
             redirect('front/login'); // TODO passer alert "Connexion impossible" en get dans l'url
         }
         else{
-            $this->session->email = $email;
             $this->session->id = $user->id;
             redirect('back');
         }

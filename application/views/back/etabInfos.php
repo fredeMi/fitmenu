@@ -6,7 +6,7 @@
         <form action="/back/updateEtab/" method="post">
             <input type="hidden" name="id" value="<?= $etab->id ?>">
             <label for="name">Nom de votre établissement:</label>
-            <input type="text" size="30" name="name" value="<?= $etab->name ?>">
+            <input type="text" size="30" name="name" placeholder="nom etablissT" value="<?= $etab->name ?>">
     </div>
     <div class="col-6">
         <label for="web_site">Adresse web de votre carte:</label>
