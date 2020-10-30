@@ -5,13 +5,13 @@ class Etab extends Fitmenu
 {	 	 	 	 	 	 
     private int $id = 0;
     private int $user_id;
-    private string $name;
-    private string $adress;
-    private string $zip_code;
-    private string $city;
-    private int $phone;
-    private string $web_site;
-    private int $maintenance;
+    private string $name = '';
+    private string $adress = '';
+    private string $zip_code = '';
+    private string $city = '';
+    private int $phone = 0;
+    private string $web_site = '';
+    private int $maintenance = 1;
 
     public function __construct()
     {

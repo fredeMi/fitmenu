@@ -28,13 +28,8 @@ class Etab_model extends MY_Model
     }
 
     // TODO modifier pour qu'elle s'éxécute après enregistrement des infos
-    public function insertEtab()
+    public function insertEtab($insertInfos)
     {
-        $userId = $this->session->id;
-        $insertInfos = ['user_id' => $userId];
-        $this->db->set($insertInfos);
-        $this->db->insert('establishment');
-        // recupérer dernier id inséré et le passer en session
-        $this->session->etabId = $this->db->insert_id();
+        $this->db->insert('establishment', $insertInfos);
     }
 }

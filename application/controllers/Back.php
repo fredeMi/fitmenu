@@ -39,12 +39,12 @@ class Back extends CI_Controller
     }
 
     // initialise un établissement et renvoie sur affichage infos
-    public function createEtab()
-    {
-        $this->Etab_model->insertEtab();
-        $etabId = $this->session->etabId;
-        redirect('back/establishment/' . $etabId);
-    }
+    // public function createEtab()
+    // {
+    //     $this->Etab_model->insertEtab();
+    //     $etabId = $this->session->etabId;
+    //     redirect('back/establishment/' . $etabId);
+    // }
 
     // modifie infos établissement
     public function updateEtab()
@@ -52,7 +52,13 @@ class Back extends CI_Controller
         // recup infos du post et ajoute le userId en cours
         $updateInfos = $this->input->post(NULL, TRUE);
         $updateInfos['user_id'] = $this->session->id;
-        $this->Etab_model->updateQuery($updateInfos);
+        // si nouvel etab alors insere dans la DB
+        if ($updateInfos['id'] == 0) {
+            $this->Etab_model->insertEtab($updateInfos);
+        } else {
+            // sinon met à jour infos etab dans la DB
+            $this->Etab_model->updateQuery($updateInfos);
+        }
         redirect('back');
     }
 
