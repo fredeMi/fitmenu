@@ -31,11 +31,11 @@ class Back extends CI_Controller
     public function establishment(?int $etabId = NULL)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        print_r($this->data['etab']);
         $this->load->view('templates/header');
         $this->load->view('templates/nav_back', $this->data);
         $this->load->view('back/etabInfos', $this->data);
         $this->load->view('templates/footer');
-        print_r($this->data['etab']);
     }
 
     // initialise un établissement et renvoie sur affichage infos
@@ -49,15 +49,10 @@ class Back extends CI_Controller
     // modifie infos établissement
     public function updateEtab()
     {
-        $id = $this->input->post('id');
-        $name = $this->input->post('name');
-        $adress = $this->input->post('adress');
-        $zip_code = $this->input->post('zip_code');
-        $city = $this->input->post('city');
-        $phone = $this->input->post('phone');
-        $web_site = $this->input->post('web_site');
-        $maintenance = $this->input->post('maintenance');
-        $this->Etab_model->updateQuery($id, $name, $adress, $zip_code, $city, $phone, $web_site, $maintenance);
+        // recup infos du post et ajoute le userId en cours
+        $updateInfos = $this->input->post(NULL, TRUE);
+        $updateInfos['user_id'] = $this->session->id;
+        $this->Etab_model->updateQuery($updateInfos);
         redirect('back');
     }
 
