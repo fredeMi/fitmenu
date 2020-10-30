@@ -32,4 +32,10 @@ class Etab_model extends MY_Model
     {
         $this->db->insert('establishment', $insertInfos);
     }
+
+    public function deleteQuery($etabId)
+    {
+        $this->db->where('id', $etabId);
+        $this->db->delete('establishment');
+    }
 }

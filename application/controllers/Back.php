@@ -11,17 +11,16 @@ class Back extends CI_Controller
     {
         parent::__construct();
         $this->userId = $this->session->id;
+        // récupère établissements de l'utilisateur en cours
         $this->data['etabs'] = $this->Etab_model->loadEtab($this->userId);
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId);
-        // print_r($this->data['etab']);
         $this->output->enable_profiler(TRUE);
     }
 
-    // affiche tous les établissements du user en cours
+    // affiche TOUS les établissements du user en cours
     public function index()
     {
         $this->load->view('templates/header');
-        // récupère et affiche infos DB via id utilisateur en session
         $this->load->view('back/dashboard', $this->data);
         $this->load->view('templates/footer');
     }
@@ -31,23 +30,15 @@ class Back extends CI_Controller
     public function establishment(?int $etabId = NULL)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
-        print_r($this->data['etab']);
         $this->load->view('templates/header');
         $this->load->view('templates/nav_back', $this->data);
         $this->load->view('back/etabInfos', $this->data);
         $this->load->view('templates/footer');
     }
 
-    // initialise un établissement et renvoie sur affichage infos
-    // public function createEtab()
-    // {
-    //     $this->Etab_model->insertEtab();
-    //     $etabId = $this->session->etabId;
-    //     redirect('back/establishment/' . $etabId);
-    // }
 
-    // modifie infos établissement
-    public function updateEtab()
+    // crée nouvel établissement ou modifie infos établissement
+    public function registerEtab()
     {
         // recup infos du post et ajoute le userId en cours
         $updateInfos = $this->input->post(NULL, TRUE);
@@ -59,6 +50,12 @@ class Back extends CI_Controller
             // sinon met à jour infos etab dans la DB
             $this->Etab_model->updateQuery($updateInfos);
         }
+        redirect('back');
+    }
+
+    public function deleteEtab($etabId)
+    {
+        $this->Etab_model->deleteQuery($etabId);
         redirect('back');
     }
 

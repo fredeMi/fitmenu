@@ -3,7 +3,7 @@
 </div>
 <div class="row">
     <div class="col-6">
-        <form action="/back/updateEtab/" method="post">
+        <form action="/back/registerEtab/" method="post">
             <input type="hidden" name="id" value="<?= $etab->id ?>">
             <label for="name">Nom de votre établissement:</label>
             <input type="text" size="30" name="name" placeholder="nom etablissT" value="<?= $etab->name ?>">
@@ -37,12 +37,18 @@
     <div class="col-6">
         <p>Site en cours de maintenance:</p>
         <input type="radio" name="maintenance" value="1" <? echo ($etab->maintenance)? "checked" : "" ?>>
-        <label>Activé</label>
+        <label>Activer</label>
         <input type="radio" name="maintenance" value="0" <? echo ($etab->maintenance)? "" : "checked" ?>>
-        <label>Désactivé</label>
+        <label>Désactiver</label>
     </div>
     <div class="col-6">
-        <button type="submit" class="btn btn-info">Enregistrer les informations</button>
+        <button type="submit" class="btn-lg btn-info">Enregistrer les informations</button>
     </div>
 </div>
 </form>
+<hr>
+<div class="row mt-4">
+    <div class="col">
+        <a href="/back/deleteEtab/<?= $etab->id ?>" type="button" class="btn btn-info">Supprimer cet établissement</a>
+    </div>
+</div>
