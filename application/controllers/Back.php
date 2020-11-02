@@ -14,7 +14,7 @@ class Back extends CI_Controller
         // récupère établissements de l'utilisateur en cours
         $this->data['etabs'] = $this->Etab_model->loadEtab($this->userId);
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId);
-        $this->output->enable_profiler(TRUE);
+        // $this->output->enable_profiler(TRUE);
     }
 
     // affiche TOUS les établissements du user en cours
@@ -58,8 +58,6 @@ class Back extends CI_Controller
         $this->Etab_model->deleteQuery($etabId);
         redirect('back');
     }
-
-    // TODO méthode supprimer etablissement
     // fin fonctions établissement(s)
 
     // fonctions catégories
@@ -73,27 +71,81 @@ class Back extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function category($catId)
+    public function category($etabId,  ?int $catId = NULL)
     {
+        $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
         $this->load->view('templates/header');
-        $this->load->view('templates/nav_back');
-        $etabId = $this->session->etabId;
+        $this->load->view('templates/nav_back', $this->data);
         $this->data['cat'] = $this->Category_model->loadOneCat($etabId, $catId);
         $this->load->view('back/category', $this->data);
         $this->load->view('templates/footer');
     }
 
-    public function createCat()
+
+    public function registerCat()
     {
-        $catId = $this->Category_model->insertCat();
-        redirect('back/category/' . $catId);
+        // recup infos du post "enregistrer la catégorie"
+        $updateInfos = $this->input->post(NULL, TRUE);
+        // si nouvel cat alors insere dans la DB
+        if ($updateInfos['id'] == 0) {
+            $this->Category_model->insertCat($updateInfos);
+        } else {
+            // sinon met à jour infos cat dans la DB
+            $this->Category_model->updateQuery($updateInfos);
+        }
+        redirect('back/categories/'.$updateInfos['estab_id']);
     }
 
-    public function updateCat($catId)
+    public function deleteCat($etabId, $catId)
     {
-        $name = $this->input->post('name');
-        $description = $this->input->post('description');
-        $this->Category_model->updateQuery($catId, $name, $description);
-        redirect('back/categories');
+        $this->Category_model->deleteQuery($catId);
+        redirect('back/categories/'.$etabId);
     }
+
+    // fin fonctions catégories
+
+    // fonctions produits
+    public function products($etabId, $catId)
+    {
+        $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->data['cat'] = $this->Category_model->loadOneCat($etabId, $catId);
+        $this->data['products'] = $this->Product_model->loadProducts($catId);
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav_back', $this->data);
+        $this->load->view('back/products', $this->data);
+        $this->load->view('templates/footer');
+    }
+
+    public function product($etabId, $catId, ?int $prodId = NULL)
+    {
+        $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav_back', $this->data);
+        $this->data['prod'] = $this->Product_model->loadOneProd($catId, $prodId);
+        $this->load->view('back/product', $this->data);
+        $this->load->view('templates/footer');
+    }
+
+
+    public function registerProd($etabId)
+    {
+        $updateInfos = $this->input->post(NULL, TRUE);
+        // si nouveau produit alors insere dans la DB
+        if ($updateInfos['id'] == 0) {
+            $this->Product_model->insertProd($updateInfos);
+        } else {
+            // sinon met à jour infos prod dans la DB
+            $this->Product_model->updateQuery($updateInfos);
+        }
+        redirect('back/products/'.$etabId.'/'.$updateInfos['cat_id']);
+    }
+
+    public function deleteProd($etabId, $catId, $prodId)
+    {
+        $this->Product_model->deleteQuery($prodId);
+        redirect('back/products/'.$etabId.'/'.$catId);
+    }
+
+    // fin fonctions produits
+
 }

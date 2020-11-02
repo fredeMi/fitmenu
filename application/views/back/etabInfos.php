@@ -6,30 +6,30 @@
         <form action="/back/registerEtab/" method="post">
             <input type="hidden" name="id" value="<?= $etab->id ?>">
             <label for="name">Nom de votre établissement:</label>
-            <input type="text" size="30" name="name" placeholder="nom etablissT" value="<?= $etab->name ?>">
+            <input type="text" size="30" name="name" placeholder="Nom Etablissement" value="<?= $etab->name ?>">
     </div>
     <div class="col-6">
         <label for="web_site">Adresse web de votre carte:</label>
-        <input type="url" size="30" name="web_site" value="<?= $etab->web_site ?>">
+        <input type="url" size="30" name="web_site" placeholder="exemplenom.fr" value="<?= $etab->web_site ?>">
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-8">
-        <label for="adress">Numéro et nom de la rue:</label><br>
-        <input type="text" size="50" name="adress" value="<?= $etab->adress ?>"><br>
+        <label for="adress">Numéro et nom de la voie:</label><br>
+        <input type="text" size="50" name="adress" placeholder="n° voie" value="<?= $etab->adress ?>"><br>
         <div class="mt-3">
             <label for="zip_code">Code postal:</label><br>
-            <input type="text" size="10" name="zip_code" value="<?= $etab->zip_code ?>"><br>
+            <input type="text" size="10" name="zip_code" placeholder="00000" value="<?= $etab->zip_code ?>"><br>
             <label for="city">Ville:</label><br>
-            <input type="text" size="40" name="city" value="<?= $etab->city ?>">
+            <input type="text" size="40" name="city" placeholder="Ville" value="<?= $etab->city ?>">
         </div>
     </div>
     <div class="col-4 text-left">
         <label for="phone">Téléphone:</label><br>
-        <input type="tel" name="phone" value="<?= $etab->phone ?>"><br>
+        <input type="tel" name="phone" placeholder="1234567890" value="<?= $etab->phone ?>"><br>
         <label for="web_site mt-2">Site web de votre établissement:</label><br>
-        <input type="url" size="30" name="web_site" value="<?= $etab->web_site ?>">
+        <input type="url" size="30" name="web_site" placeholder="http://votreetablissement.fr" value="<?= $etab->web_site ?>">
     </div>
 </div>
 <br>

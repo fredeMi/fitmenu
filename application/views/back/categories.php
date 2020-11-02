@@ -10,6 +10,7 @@
                 <th scope="col">Ordre d'affichage</th>
                 <th scope="col">Image</th>
                 <th scope="col">Modifier la catégorie</th>
+                <th scope="col">Supprimer la catégorie</th>
             </tr>
         </thead>
         <tbody>
@@ -22,12 +23,13 @@
                 <td><?= $cat->description ?></td>
                 <td><?= $cat->rank ?></td>
                 <td><img src="<?= $cat->image ?>" alt="<?= $cat->name ?>" width="50"></td>
-                <td><a href="/back/category/<?= $cat->id ?>" type="button" class="btn btn-info">Modifier</a></td>
+                <td><a href="/back/category/<?= $etab->id ?>/<?= $cat->id ?>" type="button" class="btn btn-info">Modifier</a></td>
+                <td><a href="/back/deleteCat/<?= $etab->id ?>/<?= $cat->id ?>" type="button" class="btn btn-warning btn-sm">Supprimer</a></td>
             </tr>
             <?}?>
         </tbody>
     </table>
 </div>
 <div class="row">
-<button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/createCat/">Créer une nouvelle catégorie</a></button>
+<button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/category/<?= $etab->id ?>">Créer une nouvelle catégorie</a></button>
 </div>

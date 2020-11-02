@@ -1,12 +1,15 @@
 <?php
 require_once "application/libraries/Fitmenu.php";
 
-class Category extends Fitmenu
+class Product extends Fitmenu
 {	 	 	 	 	 	 
     private int $id = 0;
-    private int $estab_id;
+    private int $cat_id;
     private string $name = '';
     private string $description = '';
+    private float $price = 0;
+    private int $highlight = 0;
+    private int $sold_out = 0;
     private int $rank = 0;
     private string $image = '';
 
@@ -36,21 +39,21 @@ class Category extends Fitmenu
     }
 
     /**
-     * Get the value of estab_id
+     * Get the value of cat_id
      */ 
-    public function getEstab_id()
+    public function getCat_id()
     {
-        return $this->estab_id;
+        return $this->cat_id;
     }
 
     /**
-     * Set the value of estab_id
+     * Set the value of cat_id
      *
      * @return  self
      */ 
-    public function setEstab_id($estab_id)
+    public function setCat_id($cat_id)
     {
-        $this->estab_id = $estab_id;
+        $this->cat_id = $cat_id;
 
         return $this;
     }
@@ -91,6 +94,66 @@ class Category extends Fitmenu
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of price
+     */ 
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */ 
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of highlight
+     */ 
+    public function getHighlight()
+    {
+        return $this->highlight;
+    }
+
+    /**
+     * Set the value of highlight
+     *
+     * @return  self
+     */ 
+    public function setHighlight($highlight)
+    {
+        $this->highlight = $highlight;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sold_out
+     */ 
+    public function getSold_out()
+    {
+        return $this->sold_out;
+    }
+
+    /**
+     * Set the value of sold_out
+     *
+     * @return  self
+     */ 
+    public function setSold_out($sold_out)
+    {
+        $this->sold_out = $sold_out;
 
         return $this;
     }
