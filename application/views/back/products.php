@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row my-4 mx-0">
     <h2 class="text-info">Produits de la catégorie <?= $cat->name ?></h2>
 </div>
-<div class="row">
+<div class="row my-4 mx-0">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -24,7 +24,7 @@
             <tr>
                 <td><?= $prod->name ?></td>
                 <td><?= $prod->description ?></td>
-                <td><?= $prod->price ?></td>
+                <td><?= $prod->price ?>€</td>
                 <td><?= $prod->highlight ?></td>
                 <td><?= $prod->sold_out ?></td>
                 <td><?= $prod->rank ?></td>
@@ -36,6 +36,6 @@
         </tbody>
     </table>
 </div>
-<div class="row">
+<div class="row mx-0">
 <button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/product/<?=$etab->id?>/<?= $cat->id ?>">Créer un nouveau produit</a></button>
 </div>

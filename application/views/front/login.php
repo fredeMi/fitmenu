@@ -1,8 +1,3 @@
-<?php
-// echo validation_errors();
-// echo form_open('form');
-?>
-
 <form method="post" action="login/checkUser">
 
 <h3>S'identifier:</h3>

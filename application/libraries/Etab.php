@@ -11,6 +11,8 @@ class Etab extends Fitmenu
     private string $city = '';
     private int $phone = 0;
     private string $web_site = '';
+    private string $menu_site = '';
+    private string $logo = '';
     private int $maintenance = 1;
 
     public function __construct()
@@ -196,4 +198,44 @@ class Etab extends Fitmenu
         return $this;
     }
 
+
+    /**
+     * Get the value of menu_site
+     */ 
+    public function getMenu_site()
+    {
+        return $this->menu_site;
+    }
+
+    /**
+     * Set the value of menu_site
+     *
+     * @return  self
+     */ 
+    public function setMenu_site($menu_site)
+    {
+        $this->menu_site = $menu_site;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of logo
+     */ 
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set the value of logo
+     *
+     * @return  self
+     */ 
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
 }

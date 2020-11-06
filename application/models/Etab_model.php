@@ -9,13 +9,31 @@ class Etab_model extends MY_Model
         return $query->custom_result_object('Etab');
     }
 
-    public function loadOneEtab($userId, ?int $etabId = NULL)
+    public function loadOneEtab($userId, ?int $etabId = 0)
     {
-        if ($etabId === NULL) {
+        if ($etabId === 0) {
             return new Etab;
         }
         $query = $this->db->query("SELECT * FROM establishment WHERE user_id= $userId AND id= $etabId");
         return $query->custom_row_object(0, 'Etab');
+    }
+
+    public function loadFrontEtab($etabId)
+    {
+        $query = $this->db->query("SELECT * FROM establishment WHERE id= $etabId");
+        return $query->custom_row_object(0, 'Etab');
+    }
+
+    public function loadFrontEtabId($etabMenuSite)
+    {
+        $this->db->where('menu_site', $etabMenuSite);
+        return $this->db->get()->row(0, 'Etab');
+    }
+
+    public function etabExists($etabMenuSite)
+    {
+        $this->db->where('menu_site', $etabMenuSite);
+        return $this->db->count_all_results('establishment', FALSE);
     }
 
     public function updateQuery($updateInfos)

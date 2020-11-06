@@ -5,6 +5,12 @@ class Category_model extends MY_Model
     // charge les catégories de l'établissement en cours
     public function loadCategories($etabId)
     {
+        if ($etabId === 0) {
+            $newCat = new Category;
+            $newCat->name = 'Pas encore de catégorie créée';
+            $newCat->id = 0;
+            return $newCat;
+        }
         $query = $this->db->query("SELECT * FROM category WHERE estab_id= $etabId");
         return $query->custom_result_object('Category');
     }
@@ -22,7 +28,7 @@ class Category_model extends MY_Model
 
     public function insertCat($insertInfos)
     {
-        $this->db->insert('category',$insertInfos);
+        $this->db->insert('category', $insertInfos);
     }
 
     public function updateQuery($updateInfos)
@@ -37,5 +43,4 @@ class Category_model extends MY_Model
         $this->db->where('id', $catId);
         $this->db->delete('category');
     }
-
 }

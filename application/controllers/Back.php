@@ -27,15 +27,52 @@ class Back extends CI_Controller
 
     // fonctions établissement
     // affiche info UN établissement en cours
-    public function establishment(?int $etabId = NULL)
+    public function establishment(?int $etabId = 0)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->data['categories'] = $this->Category_model->loadCategories($etabId);
         $this->load->view('templates/header');
         $this->load->view('templates/nav_back', $this->data);
         $this->load->view('back/etabInfos', $this->data);
         $this->load->view('templates/footer');
     }
 
+    public function customisation(?int $etabId = 0)
+    {
+        $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->data['categories'] = $this->Category_model->loadCategories($etabId);
+        $this->data['error'] = '';
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav_back', $this->data);
+        $this->load->view('back/customisation', $this->data);
+        $this->load->view('templates/footer');
+    }
+
+    public function do_upload()
+    {
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            $error = array('error' => $this->upload->display_errors());
+            redirect('back/customisation');
+
+            echo "<script>alert(\"Erreur de chargement de votre fichier: $error[0]\")</script>";
+
+            // $this->load->view('upload_form', $error);
+        } else {
+            redirect('back/customisation');
+            echo "<script>alert(\"Votre fichier a bien été téléchargé\")</script>";
+            
+            // $data = array('upload_data' => $this->upload->data());
+            // $this->load->view('upload_success', $data);
+        }
+    }
 
     // crée nouvel établissement ou modifie infos établissement
     public function registerEtab()
@@ -74,6 +111,7 @@ class Back extends CI_Controller
     public function category($etabId,  ?int $catId = NULL)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->data['categories'] = $this->Category_model->loadCategories($etabId);
         $this->load->view('templates/header');
         $this->load->view('templates/nav_back', $this->data);
         $this->data['cat'] = $this->Category_model->loadOneCat($etabId, $catId);
@@ -93,13 +131,13 @@ class Back extends CI_Controller
             // sinon met à jour infos cat dans la DB
             $this->Category_model->updateQuery($updateInfos);
         }
-        redirect('back/categories/'.$updateInfos['estab_id']);
+        redirect('back/categories/' . $updateInfos['estab_id']);
     }
 
     public function deleteCat($etabId, $catId)
     {
         $this->Category_model->deleteQuery($catId);
-        redirect('back/categories/'.$etabId);
+        redirect('back/categories/' . $etabId);
     }
 
     // fin fonctions catégories
@@ -108,6 +146,7 @@ class Back extends CI_Controller
     public function products($etabId, $catId)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->data['categories'] = $this->Category_model->loadCategories($etabId);
         $this->data['cat'] = $this->Category_model->loadOneCat($etabId, $catId);
         $this->data['products'] = $this->Product_model->loadProducts($catId);
         $this->load->view('templates/header');
@@ -137,13 +176,13 @@ class Back extends CI_Controller
             // sinon met à jour infos prod dans la DB
             $this->Product_model->updateQuery($updateInfos);
         }
-        redirect('back/products/'.$etabId.'/'.$updateInfos['cat_id']);
+        redirect('back/products/' . $etabId . '/' . $updateInfos['cat_id']);
     }
 
     public function deleteProd($etabId, $catId, $prodId)
     {
         $this->Product_model->deleteQuery($prodId);
-        redirect('back/products/'.$etabId.'/'.$catId);
+        redirect('back/products/' . $etabId . '/' . $catId);
     }
 
     // fin fonctions produits

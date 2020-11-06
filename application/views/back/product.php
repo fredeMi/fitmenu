@@ -14,7 +14,7 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label>Prix</label>
-      <input type="number" name="price" class="form-control" placeholder="00.00 €" value="<?= $prod->price ?>">
+      <input type="number" name="price" class="form-control" step="0.01" placeholder="00.00 €" value="<?= $prod->price ?>">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Enregistrer les informations</button>
