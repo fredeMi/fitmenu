@@ -13,7 +13,7 @@
             <label for="menu_site">Adresse web personnalisée de votre carte:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">http://fitmenu.fr/alacarte/</span>
+                    <span class="input-group-text" id="basic-addon3">http://fitmenu/frededev.fr/alacarte/</span>
                 </div>
                 <input class="form-control input-sm" type="text" size="30" name="menu_site" placeholder="exemplenom.fr" value="<?= $etab->menu_site ?>">
             </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="col-6">
         <p>Votre logo actuel:</p>
-        <img src="<?= $etab->logo ?>" class="img-thumbnail mr-3" alt="logo" width="250">
+        <img src="/uploads/logos/logo_<?=$etab->id?>" class="img-thumbnail mr-3" alt="logo" width="250">
         <a href="/back/customisation/<?= $etab->id ?>" type="button" class="btn-lg btn-success">Personnaliser votre carte</a>
     </div>
 </div>

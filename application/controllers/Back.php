@@ -41,37 +41,43 @@ class Back extends CI_Controller
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
         $this->data['categories'] = $this->Category_model->loadCategories($etabId);
-        $this->data['error'] = '';
+        if($this->session->flashdata('error') == 'ok'){
+            $this->data['error'] = '<div class="alert alert-info" role="alert">Votre fichier a bien été téléchargé</div>';
+        }
+        elseif($this->session->flashdata('error') == 'ko'){
+            $this->data['error'] = '<div class="alert alert-warning" role="alert">Erreur de chargement de votre fichier</div>';
+        }
         $this->load->view('templates/header');
         $this->load->view('templates/nav_back', $this->data);
         $this->load->view('back/customisation', $this->data);
         $this->load->view('templates/footer');
     }
 
-    public function do_upload()
+    public function upload_logo()
     {
-        $config['upload_path']          = './uploads/';
+        $etabId = $this->input->post('etabId');
+
+        // crée un tableau des chemins des fichiers correspondant au pattern et supprime ces fichiers
+        array_map('unlink', glob('uploads/logos/logo_'.$etabId.'.*'));
+
+        $config['upload_path']          = './uploads/logos/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 100;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
+        $config['file_name']            = 'logo_' . $etabId;
+        $config['overwrite']            = true;
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('userfile')) {
-            $error = array('error' => $this->upload->display_errors());
-            redirect('back/customisation');
-
-            echo "<script>alert(\"Erreur de chargement de votre fichier: $error[0]\")</script>";
-
-            // $this->load->view('upload_form', $error);
+            $this->session->set_flashdata('error', 'ko');
         } else {
-            redirect('back/customisation');
-            echo "<script>alert(\"Votre fichier a bien été téléchargé\")</script>";
-            
-            // $data = array('upload_data' => $this->upload->data());
-            // $this->load->view('upload_success', $data);
+            $this->session->set_flashdata('error', 'ok');
+            $this->output->delete_cache('back/customisation/'.$etabId);
+            $this->output->delete_cache('back/establishment/'.$etabId);
         }
+        redirect('back/customisation/'.$etabId);
     }
 
     // crée nouvel établissement ou modifie infos établissement

@@ -3,11 +3,12 @@
 </div>
 <div class="row my-4">
     <div class="col-6">
-        <img src="<?= $etab->logo ?>" alt="logo" width="250">
+        <img src="/uploads/logos/logo_<?=$etab->id?>?t=<?=time()?>" alt="logo" width="250">
         <p>Votre logo actuel</p>
-        <?= $error; ?>
-        <?= form_open_multipart('back/do_upload'); ?>
-            <label for="userfile">Pour changer le logo:</label><br>
+        <?= isset($error)? $error : '' ?>
+        <?= form_open_multipart('back/upload_logo/'); ?>
+            <input type="hidden" name="etabId" value=<?=$etab->id?>>
+            <label for="userfile">Pour changer votre logo:</label><br>
             <input type="file" class="btn-info" name="userfile" size="40" />
             <br /><br />
             <input type="submit" class="btn-success" value="Enregistrer votre nouveau logo" />
