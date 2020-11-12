@@ -10,6 +10,9 @@ class Back extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if(!isset($this->session->id)){
+            redirect('login');
+        };
         $this->userId = $this->session->id;
         // récupère établissements de l'utilisateur en cours
         $this->data['etabs'] = $this->Etab_model->loadEtab($this->userId);
@@ -197,5 +200,12 @@ class Back extends CI_Controller
     }
 
     // fin fonctions produits
+
+    // se deconnecter
+    public function logOut(){
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('infoLog', 'logout');
+        redirect('login');
+    }
 
 }

@@ -1,5 +1,10 @@
 <div class="row my-4">
-    <h2 class="text-info">Vos établissements</h2>
+    <div class="col">
+        <h2 class="text-info">Vos établissements</h2>
+    </div>
+    <div class="col">
+        <a class="btn btn-primary rounded" href="/back/logOut">Se déconnecter</a>
+    </div>
 </div>
 <div class="row my-4">
     <table class="table table-striped">
@@ -35,5 +40,5 @@
     </table>
 </div>
 <div class="row my-4">
-<button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/establishment/">Créer un nouvel établissement</a></button>
+    <button type="button" class="btn btn-success btn-lg"><a class="text-light" href="/back/establishment/">Créer un nouvel établissement</a></button>
 </div>

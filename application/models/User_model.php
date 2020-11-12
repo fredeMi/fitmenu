@@ -10,7 +10,7 @@ class User_model extends CI_Model
 
     public function loadUser($email, $password)
     {
-        $this->db->select('id, active');
+        $this->db->select('id', 'active');
         $this->db->from('user');
         $user = ['email' => $email, 'password' => $password];
         $this->db->where($user);

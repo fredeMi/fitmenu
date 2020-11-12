@@ -6,9 +6,12 @@ class Login extends CI_Controller
 
     public function index()
     {
-        $this->data['errorLog'] = '';
-        if ($this->session->flashdata('errorLog') == 'ko') {
-            $this->data['errorLog'] = '<div class="alert alert-warning" role="alert">Connexion impossible, veuillez vérifier vos identifiants</div>';
+        if ($this->session->flashdata('infoLog') == 'ko') {
+            $this->data['infoLog'] = '<div class="alert alert-warning" role="alert">Connexion impossible, veuillez vérifier vos identifiants</div>';
+        } elseif ($this->session->flashdata('infoLog') == 'logout') {
+            $this->data['infoLog'] = '<div class="alert alert-success" role="alert">Vous êtes bien déconnecté.e</div>';
+        } else {
+            $this->data['infoLog'] = '<div class="alert alert-info" role="alert">Veuillez saisir vos identifiants</div>';
         }
         $this->load->library('form_validation');
         $this->load->view('templates/header');
@@ -29,14 +32,12 @@ class Login extends CI_Controller
         $user = $userQuery->row();
 
         // si requete nulle alors redirect mm page sinon ok ouverture session et redirect vers controller Back / methode qui va afficher vue dashboard
-        if($userQuery->num_rows() == 0){ // TODO ajouter si user non validé par email envoyé: || $user->active === 0
-            $this->session->set_flashdata('errorLog', 'ko');
+        if ($userQuery->num_rows() == 0) { // TODO ajouter si user non validé par email envoyé: || $user->active === 0
+            $this->session->set_flashdata('infoLog', 'ko');
             redirect('login');
-        }
-        else{
+        } else {
             $this->session->id = $user->id;
             redirect('back');
         }
-
     }
 }

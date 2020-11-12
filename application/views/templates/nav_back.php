@@ -24,6 +24,9 @@
         <span class="nav-item text-right">
             <a class="nav-link border border-info rounded" href="/back">Tous vos établissements</a>
         </span>
+        <span class="nav-item text-right">
+            <a class="nav-link border border-info rounded" href="/back/logOut">Se déconnecter</a>
+        </span>
 
     </div>
 </nav>
