@@ -25,7 +25,7 @@ class Back extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // fonctions établissement
+    // fonctions pour un établissement
     // affiche info UN établissement en cours
     public function establishment(?int $etabId = 0)
     {
@@ -41,10 +41,9 @@ class Back extends CI_Controller
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
         $this->data['categories'] = $this->Category_model->loadCategories($etabId);
-        if($this->session->flashdata('error') == 'ok'){
+        if ($this->session->flashdata('error') == 'ok') {
             $this->data['error'] = '<div class="alert alert-info" role="alert">Votre fichier a bien été téléchargé</div>';
-        }
-        elseif($this->session->flashdata('error') == 'ko'){
+        } elseif ($this->session->flashdata('error') == 'ko') {
             $this->data['error'] = '<div class="alert alert-warning" role="alert">Erreur de chargement de votre fichier</div>';
         }
         $this->load->view('templates/header');
@@ -56,9 +55,11 @@ class Back extends CI_Controller
     public function upload_logo()
     {
         $etabId = $this->input->post('etabId');
+        $updateInfos['id'] = $etabId;
+        $updateInfos['user_id'] = $this->session->id;
 
         // crée un tableau des chemins des fichiers correspondant au pattern et supprime ces fichiers
-        array_map('unlink', glob('uploads/logos/logo_'.$etabId.'.*'));
+        array_map('unlink', glob('uploads/logos/logo_' . $etabId . '.*'));
 
         $config['upload_path']          = './uploads/logos/';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -74,10 +75,12 @@ class Back extends CI_Controller
             $this->session->set_flashdata('error', 'ko');
         } else {
             $this->session->set_flashdata('error', 'ok');
-            $this->output->delete_cache('back/customisation/'.$etabId);
-            $this->output->delete_cache('back/establishment/'.$etabId);
+            $updateInfos['logo'] = 'logo_'.$etabId.$this->upload->data('file_ext');
+            $this->Etab_model->updateQuery($updateInfos);
+            $this->output->delete_cache('back/customisation/' . $etabId);
+            $this->output->delete_cache('back/establishment/' . $etabId);
         }
-        redirect('back/customisation/'.$etabId);
+        redirect('back/customisation/' . $etabId);
     }
 
     // crée nouvel établissement ou modifie infos établissement

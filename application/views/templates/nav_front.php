@@ -3,7 +3,7 @@
         <a class="nav-link active text-dark" href="/alacarte/<?= $etab->menu_site ?>">
             <h3><?= $etab->name ?>:</h3> votre carte en ligne
         </a>
-        <img src="/uploads/logos/logo_<?=$etab->id?>" alt="logo" width="100">
+        <img src="/uploads/logos/<?=$etab->logo?>?t=<?=time()?>" alt="logo" width="100">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

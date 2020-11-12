@@ -21,7 +21,7 @@
     </div>
     <div class="col-6">
         <p>Votre logo actuel:</p>
-        <img src="/uploads/logos/logo_<?=$etab->id?>" class="img-thumbnail mr-3" alt="logo" width="250">
+        <img src="/uploads/logos/<?=$etab->logo?>?t=<?=time()?>" class="img-thumbnail mr-3" alt="logo" width="150">
         <a href="/back/customisation/<?= $etab->id ?>" type="button" class="btn-lg btn-success">Personnaliser votre carte</a>
     </div>
 </div>

@@ -3,7 +3,7 @@
 </div>
 <div class="row my-4">
     <div class="col-6">
-        <img src="/uploads/logos/logo_<?=$etab->id?>?t=<?=time()?>" alt="logo" width="250">
+        <img src="/uploads/logos/<?=$etab->logo?>?t=<?=time()?>" alt="logo" class="img-thumbnail" width="250">
         <p>Votre logo actuel</p>
         <?= isset($error)? $error : '' ?>
         <?= form_open_multipart('back/upload_logo/'); ?>
