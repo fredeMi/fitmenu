@@ -37,6 +37,7 @@ class Back extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    // page modif du logo et de la description etablissement
     public function customisation(?int $etabId = 0)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
@@ -71,6 +72,7 @@ class Back extends CI_Controller
 
         $this->load->library('upload', $config);
 
+        // si le chargement ne se fait pas renvoie ko à la div alert sinon met à jour la db et vide les caches
         if (!$this->upload->do_upload('userfile')) {
             $this->session->set_flashdata('error', 'ko');
         } else {

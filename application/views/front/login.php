@@ -1,13 +1,20 @@
-<form method="post" action="login/checkUser">
+<div class="row bg-secondary text-white">
+    <h1>Fit Menu</h1>
+</div>
 
-<h3>S'identifier:</h3>
-<input type="email" name="email" value="" size="30" placeholder="Votre email"/>
-<br>
-<input type="password" name="password" value="" size="30" placeholder="Mot de passe"/>
-<div><input type="submit" value="Se connecter" /></div>
+<div class="row">
+    <div class="col-8">
+        <form method="post" action="login/checkUser">
 
-</form>
+            <h3>S'identifier:</h3>
+            <input type="email" name="email" value="" size="30" placeholder="Votre email" />
+            <br>
+            <input type="password" name="password" value="" size="30" placeholder="Mot de passe" />
+            <div><input type="submit" value="Se connecter" /></div>
 
-
-</body>
-</html>
+        </form>
+    </div>
+    <div class="col-4">
+        <?= isset($errorLog) ? $errorLog : '' ?>
+    </div>
+</div>

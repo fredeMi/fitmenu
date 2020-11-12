@@ -6,9 +6,13 @@ class Login extends CI_Controller
 
     public function index()
     {
+        $this->data['errorLog'] = '';
+        if ($this->session->flashdata('errorLog') == 'ko') {
+            $this->data['errorLog'] = '<div class="alert alert-warning" role="alert">Connexion impossible, veuillez vérifier vos identifiants</div>';
+        }
         $this->load->library('form_validation');
         $this->load->view('templates/header');
-        $this->load->view('front/login');
+        $this->load->view('front/login', $this->data);
         $this->load->view('templates/footer');
     }
 
@@ -25,8 +29,9 @@ class Login extends CI_Controller
         $user = $userQuery->row();
 
         // si requete nulle alors redirect mm page sinon ok ouverture session et redirect vers controller Back / methode qui va afficher vue dashboard
-        if($userQuery->num_rows() == 0){ // TODO ajouter si user non validé: || $user->active === 0
-            redirect('front/login'); // TODO passer alert "Connexion impossible" en get dans l'url
+        if($userQuery->num_rows() == 0){ // TODO ajouter si user non validé par email envoyé: || $user->active === 0
+            $this->session->set_flashdata('errorLog', 'ko');
+            redirect('login');
         }
         else{
             $this->session->id = $user->id;
