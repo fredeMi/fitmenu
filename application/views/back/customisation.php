@@ -8,7 +8,7 @@
         <?= isset($error)? $error : '' ?>
         <?= form_open_multipart('back/upload_logo/'); ?>
             <input type="hidden" name="etabId" value=<?=$etab->id?>>
-            <label for="userfile">Pour changer votre logo:</label><br>
+            <label for="userfile">Pour changer votre logo (image de type jpg, gif ou png / maxi 1024x768 pixels et 100Ko):</label><br>
             <input type="file" class="btn-info" name="userfile" size="40" />
             <br /><br />
             <input type="submit" class="btn-success" value="Enregistrer votre nouveau logo" />
