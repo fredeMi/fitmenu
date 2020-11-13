@@ -1,6 +1,6 @@
 <div class="col-8 my-4 border-left">
     <h2><?= $etab->name ?></h2>
-    <?if($etab->maintenance == 0){?>
+    <?if($etab->maintenance == 1){?>
     <p>La carte en ligne bientôt de retour, en attendant, vous pouvez nous contacter:</p>
     <?}?>
     <address>
