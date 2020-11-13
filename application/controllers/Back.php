@@ -172,6 +172,7 @@ class Back extends CI_Controller
     public function product($etabId, $catId, ?int $prodId = NULL)
     {
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId, $etabId);
+        $this->data['categories'] = $this->Category_model->loadCategories($etabId);
         $this->load->view('templates/header');
         $this->load->view('templates/nav_back', $this->data);
         $this->data['prod'] = $this->Product_model->loadOneProd($catId, $prodId);

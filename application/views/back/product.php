@@ -16,6 +16,14 @@
       <label>Prix</label>
       <input type="number" name="price" class="form-control" step="0.01" placeholder="00.00 €" value="<?= $prod->price ?>">
     </div>
+    <div class="form-group col ml-5 mt-3">
+        <p>Rupture de stock</p>
+      <input type="radio" name="sold_out" value="1" <? echo ($prod->sold_out)? "checked" : "" ?>>
+      <label>Oui (désactive l'affichage du produit dans la carte)</label><br>
+      <input type="radio" name="sold_out" value="1" <? echo ($prod->sold_out)? "" : "checked" ?>>
+      <label>Non (l'affichage du produit dans la carte est activé)</label>
+
+    </div>
   </div>
   <button type="submit" class="btn btn-primary">Enregistrer les informations</button>
 </form>

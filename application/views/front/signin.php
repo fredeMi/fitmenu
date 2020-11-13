@@ -12,22 +12,22 @@
 
 <div class="form-row my-3">
     <div class="col">
-    <h3 class="mb-4">Pour accéder à votre tableau de bord:</h3>
-        <form method="post" action="login/checkUser">
+    <h3 class="mb-4">Pour vous inscrire et créer vos cartes sans contact:</h3>
+        <form method="post" action="signin/addUser">
 
             <div class="form-group">
-                <label for="email">Identifiant</label><br>
+                <label for="email">Email</label><br>
                 <input type="email" name="email" value="" size="30"/>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label><br>
                 <input type="password" name="password" value="" size="30"/>
             </div>
-            <div><input type="submit" value="Se connecter" /></div>
+            <div><input type="submit" value="S'inscrire" /></div>
 
         </form>
     </div>
     <div class="col mt-5 pt-5">
-        <?= $infoLog ?>
+        <?= $info ?>
     </div>
 </div>

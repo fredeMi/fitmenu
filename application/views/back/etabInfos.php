@@ -13,11 +13,11 @@
             <label for="menu_site">Adresse web personnalisée de votre carte:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">http://fitmenu/frededev.fr/alacarte/</span>
+                    <span class="input-group-text" id="basic-addon3">http://fitmenu.frededev.fr/alacarte/</span>
                 </div>
                 <input class="form-control input-sm" type="text" size="30" name="menu_site" placeholder="exemplenom.fr" value="<?= $etab->menu_site ?>">
             </div>
-
+        <a href="http://fitmenu.frededev.fr/alacarte/<?= $etab->menu_site ?>">Voir le rendu de votre carte en ligne</a>
     </div>
     <div class="col-6">
         <p>Votre logo actuel:</p>

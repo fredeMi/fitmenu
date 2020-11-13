@@ -18,10 +18,17 @@ class User_model extends CI_Model
         return $query;
     }
 
+    public function insertUser($email, $password)
+    {
+        $user = ['email' => $email, 'password' => $password];
+        $query = $this->db->insert('user', $user);
+        return $query;
+    }
+
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -31,7 +38,7 @@ class User_model extends CI_Model
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -41,7 +48,7 @@ class User_model extends CI_Model
 
     /**
      * Get the value of email
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -51,7 +58,7 @@ class User_model extends CI_Model
      * Set the value of email
      *
      * @return  self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -61,7 +68,7 @@ class User_model extends CI_Model
 
     /**
      * Get the value of active
-     */ 
+     */
     public function getActive()
     {
         return $this->active;
@@ -71,7 +78,7 @@ class User_model extends CI_Model
      * Set the value of active
      *
      * @return  self
-     */ 
+     */
     public function setActive($active)
     {
         $this->active = $active;
