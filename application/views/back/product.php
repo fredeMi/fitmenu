@@ -20,7 +20,7 @@
         <p>Rupture de stock</p>
       <input type="radio" name="sold_out" value="1" <? echo ($prod->sold_out)? "checked" : "" ?>>
       <label>Oui (désactive l'affichage du produit dans la carte)</label><br>
-      <input type="radio" name="sold_out" value="1" <? echo ($prod->sold_out)? "" : "checked" ?>>
+      <input type="radio" name="sold_out" value="0" <? echo ($prod->sold_out)? "" : "checked" ?>>
       <label>Non (l'affichage du produit dans la carte est activé)</label>
 
     </div>
