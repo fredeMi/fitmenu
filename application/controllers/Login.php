@@ -32,7 +32,7 @@ class Login extends CI_Controller
         $user = $userQuery->row();
 
         // si requete nulle alors redirect mm page sinon ok ouverture session et redirect vers controller Back / methode qui va afficher vue dashboard
-        if ($userQuery->num_rows() == 0) { // TODO ajouter si user non validé par email envoyé: || $user->active === 0
+        if ($userQuery->num_rows() == 0) { // TODO validation par email et donc || $user->active === 0
             $this->session->set_flashdata('infoLog', 'ko');
             redirect('login');
         } else {

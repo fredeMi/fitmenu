@@ -9,7 +9,6 @@ class Fitmenu{
 
     public function __set($attr, $value){
         $method = 'set'.ucFirst($attr);
-        echo "methode =".$method;        
         $this->$method($value);
     }
     

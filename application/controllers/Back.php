@@ -17,7 +17,6 @@ class Back extends CI_Controller
         // récupère établissements de l'utilisateur en cours
         $this->data['etabs'] = $this->Etab_model->loadEtab($this->userId);
         $this->data['etab'] = $this->Etab_model->loadOneEtab($this->userId);
-        // $this->output->enable_profiler(TRUE);
     }
 
     // affiche TOUS les établissements du user en cours

@@ -1,5 +1,5 @@
 <div class="col my-4">
-    <h4 class="m-2"><?= $cat->name ?></h4>
+    <h4 class="m-2 p-2 border-bottom"><?= $cat->name ?></h4>
     <table class="table table-striped my-3">
         <tbody>
             <?foreach($products as $prod){?>
